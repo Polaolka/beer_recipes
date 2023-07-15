@@ -8,8 +8,8 @@ Here, you'll find cards displaying tweets from various users, along with informa
 
 The backend for development was created using the mockapi.io UI service
 
-![General appearance](./assets/Screen2023-07-14.png)
-![Second appearance](./assets/Screen2023-07-14_1.png)
+![General appearance](./assets/Screen2023-07-15.png)
+![Second appearance](./assets/Screen2023-07-15_1.png)
 
 ## Requirements
 Before starting work with the project, make sure that the following tools are installed on your computer:

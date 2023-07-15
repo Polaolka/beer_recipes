@@ -2,7 +2,7 @@
   "name": "beer_reciipes",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://polaolka.github.io/beer_reciipes/",
+  "homepage": "https://polaolka.github.io/beer_recipes/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

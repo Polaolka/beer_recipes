@@ -70,7 +70,7 @@ export const Gallery = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  });
+  }, []);
 
   useEffect(() => {
     if (beers.length === 0 || (beers.length > 0 && beers.length <= offset + totalBeersToShow)) {
