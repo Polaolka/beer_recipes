@@ -10,17 +10,10 @@ export const HeaderStyled = styled.header`
   top: 0;
   width: 100%;
   height: 80px;
-  background: linear-gradient(142deg, #471ca9 0%, #5736a3 69.1%, #4b2a99 100%);
+  background-color: white;
   box-shadow: -2.5776965618133545px 6.873857021331787px 20.621572494506836px 0px
     rgba(0, 0, 0, 0.23);
-  &.bg {
-    background-color: #fff;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-  }
-
-  @media screen and (min-width: ${mediaSizes.desktop}) {
-    border-bottom: none;
-  }
+  border-bottom: 1px solid #5e1d07ed;
 `;
 
 export const HeaderContainer = styled.div`
@@ -51,3 +44,7 @@ export const Icon = styled.svg`
     z-index: 10;
   }
 `;
+
+// #f9c53efe
+// #b5532fe
+// #ae4f2fe

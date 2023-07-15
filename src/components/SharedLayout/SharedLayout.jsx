@@ -5,7 +5,6 @@ import { Outlet } from 'react-router-dom';
 import { Container, SharedLayoutStyled } from './SharedLayout.styled';
 import { Button } from 'components/Styled';
 import { BiUpArrow } from 'react-icons/bi';
-import { Loader } from 'components/Loader/Loader';
 
 const SharedLayout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +35,7 @@ const SharedLayout = () => {
     <SharedLayoutStyled>
       <Container>
         <Header />
-        <Suspense fallback={<Loader />}>
+        <Suspense >
           <Outlet />
         </Suspense>
       </Container>

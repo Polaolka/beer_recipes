@@ -1,88 +1,126 @@
 import React, { useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { UserItem } from '../UserItem/UserItem';
-import { BtnWrapper, FoodsListWrapper, LoadMoreBtn } from './Gallery.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../redux/user/operations';
-
+import { BeerItem } from '../BeerItem/BeerItem';
 import {
-  selectAllUsers,
-  selectFavUsers,
-  selectTweetsCategory,
-  selectCurrentPage,
-} from '../../redux/user/selectors';
-import { nextPage } from 'redux/user/slice';
+  BeersListWrapper,
+  LoadMoreBtn,
+  Info,
+} from './Gallery.styled';
+
+import useStore from '../../zustand/store';
+import { fetchBeers } from '../../zustand/api';
 
 export const Gallery = () => {
-  const dispatch = useDispatch();
-  const favUsers = useSelector(selectFavUsers);
+  const page = useStore(state => state.currentPage);
+  const selectedBeers = useStore(state => state.selectedBeers);
+  const setSelectedBeers = useStore(state => state.setSelectedBeers);
+  const deleteBeers = useStore(state => state.setDeleteBeers);
+  const { beers } = useStore();
+  const totalBeersToShow = 15;
 
-  const [totalPages, setTotalPages] = useState(0);
-  const [loadedUsers, setLoadedUsers] = useState([]);
-  const currentPage = useSelector(selectCurrentPage);
+  const [offset, setOffset] = useState(0);
+  const [endOfList, setEndOfList] = useState(false);
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const isTablet = useMediaQuery({ maxWidth: 1280 });
-  const pageSize = isMobile ? 3 : isTablet ? 4 : 3;
-
-  const users = useSelector(selectAllUsers);
-
-  const selectedFilterValue = useSelector(selectTweetsCategory);
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+  const beersToShow = beers.slice(offset, offset + totalBeersToShow);
 
   useEffect(() => {
-    const userForDisplay = (selectedFilterValue, users) => {
-      let filteredData;
-      if (selectedFilterValue === '' || selectedFilterValue === 'show all') {
-        filteredData = users;
-      } else if (selectedFilterValue === 'follow') {
-        filteredData = users.filter(obj => !favUsers.includes(obj.id));
-      } else if (selectedFilterValue === 'followings') {
-        filteredData = users.filter(obj => favUsers.includes(obj.id));
-      }
-      return filteredData;
-    };
-
-    const startIndex = (currentPage - 1) * pageSize;
-    const endIndex = startIndex + pageSize;
-    const dataBefore = userForDisplay(selectedFilterValue, users);
-
-    setLoadedUsers(dataBefore.slice(0, endIndex));
-    setTotalPages(Math.ceil(dataBefore.length / pageSize));
-  }, [selectedFilterValue, users, favUsers, currentPage, pageSize]);
-
-  const handleLoadMore = () => {
-    if (currentPage < totalPages) {
-      dispatch(nextPage());
+    if (beers.length === 0) {
+      const fetchBeersdata = async () => {
+        try {
+          const data = await fetchBeers(page);
+          useStore.setState(state => ({
+            beers: [...data],
+          }));
+          useStore.setState(state => ({ currentPage: state.currentPage + 1 }));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchBeersdata();
     }
-  };
+    if (beers.length > 0 && beers.length <= 15) {
+      const fetchBeersdata = async () => {
+        try {
+          const data = await fetchBeers(page);
+          useStore.setState(state => ({
+            beers: [...state.beers, ...data],
+          }));
+          useStore.setState(state => ({ currentPage: state.currentPage + 1 }));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchBeersdata();
+    }
+  }, [beers.length, page]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const fullHeight = document.documentElement.offsetHeight;
+  
+      if (scrollTop + windowHeight >= fullHeight && !endOfList) {
+        setEndOfList(true);
+        setOffset(prevOffset => prevOffset + 5);
+      }
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (beers.length === 0 || (beers.length > 0 && beers.length <= offset + totalBeersToShow)) {
+      const fetchBeersdata = async () => {
+        try {
+          const data = await fetchBeers(page);
+          useStore.setState(state => ({
+            beers: [...state.beers, ...data],
+          }));
+          useStore.setState(state => ({ currentPage: state.currentPage + 1 }));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchBeersdata();
+    }
+  }, [offset, beers.length, page]);
+
+  async function handleDeleteBeers() {
+    deleteBeers();
+    setSelectedBeers([]);
+  }
 
   return (
     <>
-      <FoodsListWrapper>
-        {loadedUsers?.map(({ id, name, avatar, tweets, followers }) => (
-          <UserItem
-            avatar={avatar}
-            key={`${id}`}
-            id={id}
-            name={name}
-            tweetsNum={tweets.length}
-            tweets={tweets}
-            followers={followers}
-            target="_blank"
-            rel="noreferrer noopener"
-          />
-        ))}
-      </FoodsListWrapper>
-      <BtnWrapper>
-        {currentPage < totalPages && (
-          <LoadMoreBtn className="green" onClick={handleLoadMore}>
-            Load more
-          </LoadMoreBtn>
+      {selectedBeers.length > 0 && (
+        <LoadMoreBtn onClick={handleDeleteBeers}>Видалити</LoadMoreBtn>
+      )}
+      {selectedBeers.length === 0 && (
+        <Info>
+          You can select one or more recipes with the right mouse button ⬇
+        </Info>
+      )}
+      <BeersListWrapper>
+        {beersToShow?.map(
+          ({ id, name, image_url, description, first_brewed, tagline }) => (
+            <BeerItem
+              image_url={image_url}
+              key={`${id}`}
+              id={id}
+              name={name}
+              description={description}
+              first_brewed={first_brewed}
+              tagline={tagline}
+              target="_blank"
+              rel="noreferrer noopener"
+            />
+          )
         )}
-      </BtnWrapper>
+      </BeersListWrapper>
     </>
   );
 };

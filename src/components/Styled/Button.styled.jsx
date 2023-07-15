@@ -7,7 +7,7 @@ export const Button = styled.button`
   justify-content: center;
   border: transparent;
   &.green {
-    background: #5CD3A8;
+    background: #f38e1ced;
   }
 
   &:hover {
@@ -27,7 +27,7 @@ export const Button = styled.button`
     & svg {
       position: relative;
       bottom: 1px;
-      fill: #5CD3A8;
+      fill: #f38e1ced;
     }
 
     &::before,

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-import logotweets from 'images/QA.png';
+import logotweets from 'images/BeerLogo.jpg';
 
 export const LogoWrapper = styled.div`
   width: 60px;
