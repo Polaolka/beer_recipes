@@ -19,6 +19,7 @@ export const Gallery = () => {
 
   const [offset, setOffset] = useState(0);
   const [endOfList, setEndOfList] = useState(false);
+  const [startOfList, setStartOfList] = useState(false);
 
   const beersToShow = beers.slice(offset, offset + totalBeersToShow);
 
@@ -56,6 +57,12 @@ export const Gallery = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = document.documentElement.scrollTop;
+  
+      if (scrollTop === 0 && !startOfList) {
+        setStartOfList(true);
+        setOffset(prevOffset => Math.max(0, prevOffset - 5));
+      }
+  
       const windowHeight = window.innerHeight;
       const fullHeight = document.documentElement.offsetHeight;
   
@@ -70,7 +77,7 @@ export const Gallery = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
