@@ -7,21 +7,17 @@ import Home from 'pages/Home';
 const OneBeer = lazy(() => import('pages/OneBeer'));
 
 const App = () => {
-  // const isLoading = useSelector(selectIsLoading);
-
   return (
     <>
-      {/* {isLoading && <Loader />} */}
-
-      {<MainContainer>
-          <Routes>
-            <Route path="/" element={<SharedLayout />}>
-              <Route index element={<Home />}/>
-              <Route path="onebeer" element={<OneBeer />}/>
-              <Route path="/*" element={<Home />} />
-            </Route>
-          </Routes>
-        </MainContainer>}
+      <MainContainer>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            <Route path="onebeer" element={<OneBeer />} />
+            <Route path="/*" element={<Home />} />
+          </Route>
+        </Routes>
+      </MainContainer>
     </>
   );
 };

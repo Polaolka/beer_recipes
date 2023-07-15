@@ -16,11 +16,7 @@ import {
 } from './BeerItem.styled';
 import useStore from '../../zustand/store';
 import { Scrollbars } from 'rc-scrollbars';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectFavUsers } from '../../redux/user/selectors';
-import 'react-toastify/dist/ReactToastify.css';
-// import { getUserById, updateUserById } from 'redux/user/operations';
-// import { addToFavArr, removeFromFavArr } from 'redux/user/slice';
+
 
 export const BeerItem = ({
   id,

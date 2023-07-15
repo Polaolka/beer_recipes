@@ -5,13 +5,9 @@ import './sass/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-
-
-        <BrowserRouter basename="/beer_reciipes">
-          <App />
-        </BrowserRouter>
-
-
-  // </React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter basename="/beer_reciipes">
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );

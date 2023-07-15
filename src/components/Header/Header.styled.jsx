@@ -45,6 +45,3 @@ export const Icon = styled.svg`
   }
 `;
 
-// #f9c53efe
-// #b5532fe
-// #ae4f2fe
