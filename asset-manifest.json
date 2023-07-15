@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/beer_reciipes/static/css/main.1eacf3ef.css",
+    "main.js": "/beer_reciipes/static/js/main.ec5efc51.js",
+    "static/js/181.bb3fb217.chunk.js": "/beer_reciipes/static/js/181.bb3fb217.chunk.js",
+    "static/media/BeerBG.jpg": "/beer_reciipes/static/media/BeerBG.c4cc8e4f2ba11149f1d3.jpg",
+    "static/media/BeerLogo.jpg": "/beer_reciipes/static/media/BeerLogo.332bd1fb1020c557412a.jpg",
+    "index.html": "/beer_reciipes/index.html",
+    "main.1eacf3ef.css.map": "/beer_reciipes/static/css/main.1eacf3ef.css.map",
+    "main.ec5efc51.js.map": "/beer_reciipes/static/js/main.ec5efc51.js.map",
+    "181.bb3fb217.chunk.js.map": "/beer_reciipes/static/js/181.bb3fb217.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1eacf3ef.css",
+    "static/js/main.ec5efc51.js"
+  ]
+}
