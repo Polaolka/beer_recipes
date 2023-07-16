@@ -7,4 +7,5 @@ export const SharedLayoutStyled = styled.div`
   justify-content: space-between;
 `;
 
-export const Container = styled.div``;
+export const Container = styled.div`
+`;

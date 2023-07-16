@@ -20,6 +20,7 @@ export const BeersListWrapper = styled.div`
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 `;
 
 export const LoadMoreBtn = styled(Button)`
