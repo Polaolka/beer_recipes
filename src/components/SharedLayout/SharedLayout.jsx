@@ -1,9 +1,9 @@
-import Footer from 'components/Footer/Footer';
-import Header from 'components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 import { Suspense, useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Container, SharedLayoutStyled } from './SharedLayout.styled';
-import { Button } from 'components/Styled';
+import { Button } from '../../components/Styled/Button.styled';
 import { BiUpArrow } from 'react-icons/bi';
 
 const SharedLayout = () => {
