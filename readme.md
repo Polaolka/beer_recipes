@@ -1,19 +1,20 @@
 ## TWEETS CARDS
 
-** ⤵️** WELCOME TO TWEETS CARDS **⬇️ **
-[life page...](https://polaolka.github.io/tweet_cards/)
+** ⤵️** WELCOME TO BEER RECIPES **⬇️ **
+[life page...](https://polaolka.github.io/beer_recipes/)
 
 ## Project overview
-Here, you'll find cards displaying tweets from various users, along with information about the number of tweets and followers.
-
-The backend for development was created using the mockapi.io UI service
+This website is a virtual beer treasure trove where you'll find the freshest and most fascinating beer recipes to unleash your creative potential and savor the unmatched taste of your own brewing.
 
 ![General appearance](./assets/Screen2023-07-15.png)
-![Second appearance](./assets/Screen2023-07-15_1.png)
+
+![Second appearance](./assets/Screen2023-07-15_2.png)
+
+![Third appearance](./assets/Screen2023-07-15_1.png)
 
 ## Requirements
 Before starting work with the project, make sure that the following tools are installed on your computer:
-- You need to enable JavaScript to run this app.
+- You need to enable NodeJs to run this app.
 
 ## Installation
 1. Clone this repository to your local machine.

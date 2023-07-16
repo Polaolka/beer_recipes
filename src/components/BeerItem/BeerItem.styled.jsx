@@ -73,7 +73,7 @@ export const ItemStyled = styled.div`
   box-shadow: -2.5776965618133545px 6.873857021331787px 20.621572494506836px 0px
     rgba(0, 0, 0, 0.23);
   width: 320px;
-  height: 134px;
+  height: 320px;
   &.active {
     background-color: #e8ffb1;
     transform: scale(1.02)
