@@ -8,7 +8,8 @@ export const BtnWrapper = styled.div`
   justify-content: center;
 `;
 export const Info = styled.p`
-  margin-top: 20px;
+
+  margin: 20px 10px 0 10px;
   color: #4b1500ec;
 `;
 

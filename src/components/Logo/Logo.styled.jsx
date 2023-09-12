@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import logotweets from 'images/BeerLogo.jpg';
+import { mediaSizes } from 'constants/media';
 
 export const LogoWrapper = styled.div`
   width: 60px;
@@ -31,8 +32,14 @@ export const LinkStyled = styled(NavLink)`
   cursor: pointer;
   position: relative;
   top: 2px;
-  margin-left: 15px;
+  margin-left: 0px;
 
+  @media screen and (min-width: ${mediaSizes.tablet}) {
+    cursor: pointer;
+  position: relative;
+  top: 2px;
+  margin-left: 15px;
+  }
 
   &:hover {
   }

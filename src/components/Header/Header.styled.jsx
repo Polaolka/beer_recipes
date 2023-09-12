@@ -31,7 +31,7 @@ export const TitleStyled = styled.h1`
   font-weight: 700;
   text-transform: uppercase;
   @media screen and (max-width: ${mediaSizes.mobile}) {
-    width: 280px;
+    width: 200px;
     font-size: 14px;
   }
   @media screen and (min-width: ${mediaSizes.mobile}) {
