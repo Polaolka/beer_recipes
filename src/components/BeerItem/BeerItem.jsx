@@ -28,6 +28,7 @@ export const BeerItem = ({
 }) => {
   const selectedBeers = useStore(state => state.selectedBeers);
   const setSelectedBeers = useStore(state => state.setSelectedBeers);
+  const saveToTeletedBeersOneBeer = useStore(state => state.saveToTeletedBeersOneBeer);
   const [selected, setSelected] = useState(false);
   const deleteOneBeer = useStore(state => state.setDeleteOneBeer);
   const handleImageError = e => {
@@ -72,6 +73,7 @@ export const BeerItem = ({
     );
     setSelectedBeers(updatedSelectedBeer);
     deleteOneBeer(id);
+    saveToTeletedBeersOneBeer(id);
   };
 
   return (

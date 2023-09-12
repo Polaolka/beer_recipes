@@ -11,17 +11,18 @@ import { fetchBeers } from '../../zustand/api';
 
 export const Gallery = () => {
   const page = useStore(state => state.currentPage);
-  const selectedBeers = useStore(state => state.selectedBeers);
-  const setSelectedBeers = useStore(state => state.setSelectedBeers);
-  const deleteBeers = useStore(state => state.setDeleteBeers);
-  const { beers } = useStore();
+  // const selectedBeers = useStore(state => state.selectedBeers);
+  // const setSelectedBeers = useStore(state => state.setSelectedBeers);
+  // const saveToDeletedBeersSomeBeers = useStore(state => state.saveToDeletedBeersSomeBeers);
+  // const deleteBeers = useStore(state => state.setDeleteBeers);
+  const { beers, selectedBeers, setSelectedBeers, saveToDeletedBeersSomeBeers, setDeleteBeers, deletedBeers } = useStore();
   const totalBeersToShow = 15;
-
+  const beerWithoutDeleted = beers.filter((beer) => !deletedBeers.includes(beer.id));
   const [offset, setOffset] = useState(0);
   const [endOfList, setEndOfList] = useState(false);
   const [startOfList, setStartOfList] = useState(false);
 
-  const beersToShow = beers.slice(offset, offset + totalBeersToShow);
+  const beersToShow = beerWithoutDeleted.slice(offset, offset + totalBeersToShow);
 
   useEffect(() => {
     if (beers.length === 0) {
@@ -98,7 +99,8 @@ export const Gallery = () => {
   }, [offset, beers.length, page]);
 
   async function handleDeleteBeers() {
-    deleteBeers();
+    setDeleteBeers();
+    saveToDeletedBeersSomeBeers(selectedBeers);
     setSelectedBeers([]);
   }
 
