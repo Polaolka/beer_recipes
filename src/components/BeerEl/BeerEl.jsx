@@ -19,13 +19,15 @@ import {
 } from './BeerEl.styled';
 import { Scrollbars } from 'rc-scrollbars';
 import useStore from '../../zustand/store';
+import { useParams } from 'react-router-dom';
 
-export const BeerEl = (id, location) => {
+export const BeerEl = location => {
+  const { id } = useParams();
   const fetchOneBeerData = useStore(state => state.fetchOneBeerData);
   const oneBeer = useStore(state => state.oneBeer);
   const backLinkLocationRef = useRef(location?.state?.from ?? '/');
   const handleBackClick = () => {
-    useStore.setState(state => ({oneBeer: {}}));
+    useStore.setState(state => ({ oneBeer: {} }));
   };
   useEffect(() => {
     fetchOneBeerData(id);
@@ -82,10 +84,7 @@ export const BeerEl = (id, location) => {
                 {ingredients?.malt?.map(malt => (
                   <tr key={nanoid()}>
                     <td>{malt.name}</td>
-                    <td>
-                      {malt.amount.value}
-                      {malt.amount.unit}
-                    </td>
+                    <td> {`${malt.amount.value} ${malt.amount.unit}`}</td>
                   </tr>
                 ))}
               </tbody>
@@ -106,17 +105,14 @@ export const BeerEl = (id, location) => {
                 {ingredients?.hops?.map(hops => (
                   <tr key={nanoid()}>
                     <td>{hops.name}</td>
-                    <td>
-                      {hops.amount.value}
-                      {hops.amount.unit}
-                    </td>
+                    <td>{`${hops.amount.value} ${hops.amount.unit}`}</td>
                     <td>{hops.add}</td>
                     <td>{hops.attribute}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <h4>food_pairing:</h4>
+            <h4>Food pairing:</h4>
             <table>
               <tbody>
                 {food_pairing?.map(food => (

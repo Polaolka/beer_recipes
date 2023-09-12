@@ -21,7 +21,7 @@ export const container = () => {
   return `
     margin: 0 auto;
     width: ${mediaSizes.mobile};
-    max-width: 100%;
+    max-width: 95%;
     padding: 8px 20px;
 
     @media screen and (min-width: ${mediaSizes.tablet}) {

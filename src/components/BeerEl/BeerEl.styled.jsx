@@ -17,6 +17,7 @@ export const SelectStyled = styled(GrCheckboxSelected)`
   top: 16px;
   right: 16px;
   opacity: 0.3;
+  cursor: pointer;
   &.active {
     opacity: 1;
     transform: scale(1.02)
@@ -27,6 +28,7 @@ export const TrashStyled = styled(GrTrash)`
   top: 40px;
   right: 16px;
   opacity: 0.3;
+  cursor: pointer;
   &:hover {
     animation: jelly 0.5s;
   }
@@ -49,7 +51,7 @@ export const InfoWrapperStyled = styled.div`
   gap: 8px;
   align-items: center;
   overflow: hidden;
-  width: calc(100% - 160px);
+  width: calc(100% - 175px);
   height: 160px;
 `;
 

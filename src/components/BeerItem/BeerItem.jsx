@@ -25,28 +25,11 @@ export const BeerItem = ({
   tagline,
   first_brewed,
   description,
-  abv,
-  ibu,
-  target_fg,
-  target_og,
-  ebc,
-  srm,
-  ph,
-  attenuation_level,
-  volume,
-  boil_volume,
-  method,
-  ingredients,
-  food_pairing,
-  brewers_tips,
-  contributed_by,
 }) => {
   const selectedBeers = useStore(state => state.selectedBeers);
   const setSelectedBeers = useStore(state => state.setSelectedBeers);
   const [selected, setSelected] = useState(false);
   const deleteOneBeer = useStore(state => state.setDeleteOneBeer);
-  const fetchOneBeer = useStore(state => state.fetchOneBeerData)
-
   const handleImageError = e => {
     e.target.src =
       'https://res.cloudinary.com/dj5smkin6/image/upload/v1689277252/Screenshot_15_rfh3yi.jpg';
@@ -91,10 +74,6 @@ export const BeerItem = ({
     deleteOneBeer(id);
   };
 
-  const handleReadMoreClick = () => {
-    fetchOneBeer(id);
-  }
-
   return (
     <ItemStyled
       selected={selected}
@@ -120,12 +99,12 @@ export const BeerItem = ({
           <BoldText>first brewed: </BoldText> {first_brewed}
         </InfoTextBeer>
       </InfoWrapperStyled>
-      <LinkStyled to="onebeer" onClick={handleReadMoreClick}>
+      <LinkStyled to={`onebeer/${id}`}>
         <ReadMoreBtnStyled >
           Read more
         </ReadMoreBtnStyled>
       </LinkStyled>
-      <Scrollbars style={{ width: 300, height: 80 }}>
+      <Scrollbars style={{ width: 270, height: 80 }}>
         <InfoTextBeerDescr>{description}</InfoTextBeerDescr>
       </Scrollbars>
     </ItemStyled>

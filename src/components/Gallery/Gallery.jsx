@@ -105,7 +105,7 @@ export const Gallery = () => {
   return (
     <>
       {selectedBeers.length > 0 && (
-        <LoadMoreBtn onClick={handleDeleteBeers}>Видалити</LoadMoreBtn>
+        <LoadMoreBtn onClick={handleDeleteBeers}>Delete</LoadMoreBtn>
       )}
       {selectedBeers.length === 0 && (
         <Info>
