@@ -28,8 +28,8 @@ export const RegisterForm = ({ setIsRegModalOpened }) => {
 
   const schema = yup.object().shape({
     username: yup.string().min(3).max(254).required(),
-    email: yup.string().min(4).max(50).required().matches(emailPattern),
-    password: yup.string().min(7).max(7).required().matches(passwordPattern),
+    email: yup.string().min(4).max(50).required().matches(emailPattern, "Incorrect email format"),
+    password: yup.string().min(7).max(7).required().matches(passwordPattern, "Incorrect password format"),
   });
 
   const message = error;

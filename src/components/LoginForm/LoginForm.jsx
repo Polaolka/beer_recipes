@@ -18,8 +18,8 @@ export const LoginForm = ({setIsLoginModalOpened}) => {
   const initialValues = { email: "", password: "" };
 
   const schema = yup.object().shape({
-    email: yup.string().min(4).max(50).required().matches(emailPattern),
-    password: yup.string().min(7).max(7).required().matches(passwordPattern),
+    email: yup.string().min(4).max(50).required().matches(emailPattern, "Incorrect email format"),
+    password: yup.string().min(7).max(7).required().matches(passwordPattern, "Incorrect password format"),
   });
 
 
