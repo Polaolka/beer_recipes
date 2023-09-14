@@ -1,20 +1,28 @@
 import styled from '@emotion/styled';
 
 export const Button = styled.button`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+text-align: center;
+  width: 120px;
+  padding: 8px;
+  gap: 6px;
+  border-radius: 4px;
   border: transparent;
-  &.green {
-    background: #f38e1ced;
+  background: #ff7300;
+  box-shadow: 0px 3.5px 3.5px 0px
+    rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  &.regBtn {
+    width: auto;
   }
-
   &:hover {
+    background: #ea4f01;
     animation: jelly 0.5s;
   }
-
   &.totop {
+    background-color: #fff;
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -26,7 +34,7 @@ export const Button = styled.button`
 
     & svg {
       position: relative;
-      bottom: 1px;
+      bottom: -2px;
       fill: #f38e1ced;
     }
 

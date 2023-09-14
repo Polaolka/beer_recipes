@@ -2,21 +2,28 @@ import { create } from 'zustand';
 import { fetchBeers } from './api';
 import { fetchOneBeer } from './api';
 import { loadState, saveState } from './localStorage';
+import { registerUser, logInUser, logOutUser } from './authApi';
 
 const useStore = create(set => ({
+  currentUser: loadState('beersUser'),
+  userId: null,
+  login: null,
+  email: null,
+  isAuth: false,
+  error: null,
   beers: [],
   oneBeer: {},
   selectedBeers: [],
   currentPage: 1,
   deletedBeers: loadState('deletedBeers') || [],
-  saveToTeletedBeersOneBeer: (id) => {
-    const deletedBeersArr = loadState('deletedBeers');
+  saveToTeletedBeersOneBeer: id => {
+    const deletedBeersArr = loadState('deletedBeers') || [];
     saveState('deletedBeers', [...deletedBeersArr, id]);
   },
-  saveToDeletedBeersSomeBeers: (ids) => {
-    const deletedBeersArr = loadState('deletedBeers');
+  saveToDeletedBeersSomeBeers: ids => {
+    const deletedBeersArr = loadState('deletedBeers') || [];
     const beerToLoad = [...deletedBeersArr, ...ids];
-    saveState('deletedBeers', beerToLoad );
+    saveState('deletedBeers', beerToLoad);
   },
   fetchBeersData: async currentPage => {
     try {
@@ -56,7 +63,6 @@ const useStore = create(set => ({
         oneID => oneID !== id
       );
       const deletedBeersArr = [...state.deletedBeers, id];
-      // console.log(deletedBeersArr);
       return {
         beers: updatedListBeers,
         selectedBeers: updatedListSelectBeers,
@@ -64,6 +70,45 @@ const useStore = create(set => ({
       };
     }),
   setCurrentPage: () => set(state => ({ currentPage: state.currentPage + 1 })),
+  register: async newUserData => {
+    try {
+      const user = await registerUser(newUserData);
+      if (user) {
+        set({
+          currentUser: user,
+          userId: user.uid,
+          login: user.displayName,
+          isAuth: true,
+          error: null,
+        });
+        saveState('beersUser', user);
+      } else {set({error: 'Error register user'}); console.error('Error register user!'); }
+
+    } catch (error) {
+      console.error('Error register user:', error);
+    }
+  },
+  logIn: async userData => {
+    try {
+      const user = await logInUser(userData);
+      if (user) {
+        set({
+          currentUser: user,
+          userId: user.uid,
+          login: user.displayName,
+          isAuth: true,
+          error: null,
+        });
+      } else {set({error: 'Error logIn user'}); console.error('Error logIn user!'); }
+
+    } catch (error) {
+      console.error('Error logIn user:', error);
+    }
+  },
+  logOut: async () => {
+    logOutUser();
+    set({ currentUser: null, userId: null, login: null, isAuth: false });
+  },
 }));
 
 export default useStore;

@@ -17,7 +17,6 @@ import {
 import useStore from '../../zustand/store';
 import { Scrollbars } from 'rc-scrollbars';
 
-
 export const BeerItem = ({
   id,
   name,
@@ -26,9 +25,12 @@ export const BeerItem = ({
   first_brewed,
   description,
 }) => {
+  const isAuth = useStore(state => state.isAuth);
   const selectedBeers = useStore(state => state.selectedBeers);
   const setSelectedBeers = useStore(state => state.setSelectedBeers);
-  const saveToTeletedBeersOneBeer = useStore(state => state.saveToTeletedBeersOneBeer);
+  const saveToTeletedBeersOneBeer = useStore(
+    state => state.saveToTeletedBeersOneBeer
+  );
   const [selected, setSelected] = useState(false);
   const deleteOneBeer = useStore(state => state.setDeleteOneBeer);
   const handleImageError = e => {
@@ -102,11 +104,9 @@ export const BeerItem = ({
         </InfoTextBeer>
       </InfoWrapperStyled>
       <LinkStyled to={`onebeer/${id}`}>
-        <ReadMoreBtnStyled >
-          Read more
-        </ReadMoreBtnStyled>
+        {isAuth ? (<ReadMoreBtnStyled>Read more</ReadMoreBtnStyled>) : (<ReadMoreBtnStyled>NO!! Read more</ReadMoreBtnStyled>)}
       </LinkStyled>
-      <Scrollbars style={{ width: 270, height: 80 }}>
+      <Scrollbars style={{ width: 250, height: 80, zIndex: 20 }}>
         <InfoTextBeerDescr>{description}</InfoTextBeerDescr>
       </Scrollbars>
     </ItemStyled>

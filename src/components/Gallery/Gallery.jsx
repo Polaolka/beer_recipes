@@ -11,10 +11,6 @@ import { fetchBeers } from '../../zustand/api';
 
 export const Gallery = () => {
   const page = useStore(state => state.currentPage);
-  // const selectedBeers = useStore(state => state.selectedBeers);
-  // const setSelectedBeers = useStore(state => state.setSelectedBeers);
-  // const saveToDeletedBeersSomeBeers = useStore(state => state.saveToDeletedBeersSomeBeers);
-  // const deleteBeers = useStore(state => state.setDeleteBeers);
   const { beers, selectedBeers, setSelectedBeers, saveToDeletedBeersSomeBeers, setDeleteBeers, deletedBeers } = useStore();
   const totalBeersToShow = 15;
   const beerWithoutDeleted = beers.filter((beer) => !deletedBeers.includes(beer.id));

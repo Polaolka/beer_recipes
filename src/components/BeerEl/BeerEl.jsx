@@ -65,7 +65,7 @@ export const BeerEl = location => {
           <InfoTextBeer>
             <BoldText>first brewed: </BoldText> {first_brewed}
           </InfoTextBeer>
-          <Scrollbars style={{ width: '100%', height: 80 }}>
+          <Scrollbars style={{ width: '100%', height: 80, zIndex: 20 }}>
             <InfoTextBeerDescr>{description}</InfoTextBeerDescr>
           </Scrollbars>
         </InfoWrapperStyled>
