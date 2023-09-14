@@ -16,9 +16,9 @@ const useStore = create(set => ({
   selectedBeers: [],
   currentPage: 1,
   deletedBeers: loadState('deletedBeers') || [],
+
   getCurrentUser: () => {
     const currentUser = loadState('beersUser') || null;
-    console.log(currentUser);
     if (currentUser) {
       set({
         userId: currentUser.uid,
@@ -84,7 +84,6 @@ const useStore = create(set => ({
   setCurrentPage: () => set(state => ({ currentPage: state.currentPage + 1 })),
   register: async newUserData => {
     const user = await registerUser(newUserData);
-    console.log(user);
     if (user) {
       set({
         currentUser: user,

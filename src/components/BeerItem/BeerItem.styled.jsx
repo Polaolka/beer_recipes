@@ -175,6 +175,7 @@ export const ReadMoreBtnStyledDisabled = styled.button`
   font-weight: 500;
   letter-spacing: 0.02em;
   background: #d1a784;
+  cursor: pointer;
   &:hover {
     background: #985b3d;
   }

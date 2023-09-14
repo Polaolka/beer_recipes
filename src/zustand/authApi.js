@@ -18,7 +18,6 @@ export const registerUser = async newUserData => {
       displayName: newUserData.username,
     });
     const { uid, displayName, email } = auth.currentUser;
-    console.log(uid, displayName, email,);
     return { uid, displayName, email };
   } catch (error) {
     console.log(error.message);

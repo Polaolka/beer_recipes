@@ -28,8 +28,8 @@ export const RegisterForm = ({ setIsRegModalOpened }) => {
 
   const schema = yup.object().shape({
     username: yup.string().min(3).max(254).required(),
-    email: yup.string().min(4).max(50).required().matches(emailPattern, "Incorrect email format"),
-    password: yup.string().min(7).max(7).required().matches(passwordPattern, "Incorrect password format"),
+    email: yup.string().min(4).max(50).required().matches(emailPattern, "Incorrect email format. The email must be in format test@gmail.com"),
+    password: yup.string().min(7).max(7).required().matches(passwordPattern, "The password must include at least 6 consecutive alphabetic characters (either uppercase `A-Z` or lowercase `a-z`) and one digit."),
   });
 
   const message = error;

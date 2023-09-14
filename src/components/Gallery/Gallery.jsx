@@ -21,37 +21,6 @@ export const Gallery = () => {
   const beersToShow = beerWithoutDeleted.slice(offset, offset + totalBeersToShow);
 
   useEffect(() => {
-    if (beers.length === 0) {
-      const fetchBeersdata = async () => {
-        try {
-          const data = await fetchBeers(page);
-          useStore.setState(state => ({
-            beers: [...data],
-          }));
-          useStore.setState(state => ({ currentPage: state.currentPage + 1 }));
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchBeersdata();
-    }
-    if (beers.length > 0 && beers.length <= 15) {
-      const fetchBeersdata = async () => {
-        try {
-          const data = await fetchBeers(page);
-          useStore.setState(state => ({
-            beers: [...state.beers, ...data],
-          }));
-          useStore.setState(state => ({ currentPage: state.currentPage + 1 }));
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      fetchBeersdata();
-    }
-  }, [beers.length, page]);
-
-  useEffect(() => {
     const handleScroll = () => {
       const scrollTop = document.documentElement.scrollTop;
   
