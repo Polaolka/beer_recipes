@@ -1,14 +1,13 @@
-import { ModalStyled } from './Modal.styled';
+import { ModalStyled } from './ModalError.styled';
 import { IoMdClose } from 'react-icons/io';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
-import useStore from '../../zustand/store';
+import useStore from 'zustand/store';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const Modal = ({ active = false, setActive, children }) => {
   const { resetError } = useStore();
-
   useEffect(() => {
     window.addEventListener('keydown', handleCloseModal);
 

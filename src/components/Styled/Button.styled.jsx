@@ -15,7 +15,7 @@ text-align: center;
   font-weight: 500;
   letter-spacing: 0.02em;
   &.regBtn {
-    width: auto;
+    width: 92px;
   }
   &:hover {
     background: #ea4f01;

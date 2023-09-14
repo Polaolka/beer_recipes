@@ -1,43 +1,41 @@
-import { FormFields, RegisterFormStyled } from "./RegisterForm.styled";
+import { FormFields, RegisterFormStyled } from './RegisterForm.styled';
 import {
   Caption,
   ButtonContainer,
   SupportingText,
-} from "components/Form/Form.styled";
-import { InputWraper } from "components/Form/Input.styled";
-import { useNavigate } from "react-router-dom";
-import { Button } from "components/Styled";
-import { registerUser } from "../../zustand/authApi";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import * as yup from "yup";
-import Message from "components/Message/Message";
-import ShowPassword from "components/ShowPassword/ShowPassword";
-import { useState } from "react";
+} from 'components/Form/Form.styled';
+import { InputWraper } from 'components/Form/Input.styled';
+import { Button } from 'components/Styled';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import * as yup from 'yup';
+import Message from 'components/Message/Message';
+import ShowPassword from 'components/ShowPassword/ShowPassword';
+import { useState } from 'react';
 import useStore from '../../zustand/store';
+const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+const passwordPattern = /^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/;
 
 export const RegisterForm = ({ setIsRegModalOpened }) => {
-  const { error } = useStore();
-  const navigate = useNavigate();
+  const { error, register } = useStore();
   const [passwordShown, setPasswordShown] = useState(false);
-  const initialValues = { username: "", email: "", password: "" };
+  const initialValues = { username: '', email: '', password: '' };
 
   const handleSubmit = (values, { resetForm }) => {
-    registerUser(values);
+    register(values);
     setIsRegModalOpened(false);
-    navigate("/teachers");
     resetForm();
   };
 
   const schema = yup.object().shape({
     username: yup.string().min(3).max(254).required(),
-    email: yup.string().min(3).max(254).required(),
-    password: yup.string().min(8).max(100).required(),
+    email: yup.string().min(4).max(50).required().matches(emailPattern),
+    password: yup.string().min(7).max(7).required().matches(passwordPattern),
   });
 
   const message = error;
 
   const onClickHandler = () => {
-    setPasswordShown((state) => !state);
+    setPasswordShown(state => !state);
   };
 
   return (
@@ -73,7 +71,7 @@ export const RegisterForm = ({ setIsRegModalOpened }) => {
                 isShown={passwordShown}
               />
               <Field
-                type={passwordShown ? "text" : "password"}
+                type={passwordShown ? 'text' : 'password'}
                 name="password"
                 placeholder=" "
               />

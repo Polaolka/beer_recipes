@@ -104,22 +104,6 @@ export const LogInBtn = styled.button`
   }
 `;
 
-export const RegistrationBtn = styled.button`
-  text-align: center;
-  padding: 8px;
-  border-radius: 4px;
-  border: none;
-  background: #ff7300;
-  box-shadow: 0px 3.5px 3.5px 0px
-    rgba(0, 0, 0, 0.25);
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  &:hover {
-    background: #ea4f01;
-  }
-`;
 export const LogInIcon = styled(FiLogIn)`
   width: 20px;
   height: 20px;

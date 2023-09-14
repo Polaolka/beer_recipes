@@ -13,9 +13,12 @@ import {
   SelectStyled,
   TrashStyled,
   InfoTextBeerDescr,
+  ReadMoreBtnStyledDisabled,
 } from './BeerItem.styled';
 import useStore from '../../zustand/store';
 import { Scrollbars } from 'rc-scrollbars';
+import Modal from 'components/Modal/Modal';
+import { ReadMoreModal } from 'components/ReadMoreModal/ReadMoreModal';
 
 export const BeerItem = ({
   id,
@@ -25,6 +28,8 @@ export const BeerItem = ({
   first_brewed,
   description,
 }) => {
+const [isInfoModalOpened, setIsInfoModalOpened] = useState(false)
+
   const isAuth = useStore(state => state.isAuth);
   const selectedBeers = useStore(state => state.selectedBeers);
   const setSelectedBeers = useStore(state => state.setSelectedBeers);
@@ -78,6 +83,10 @@ export const BeerItem = ({
     saveToTeletedBeersOneBeer(id);
   };
 
+  const openInfoModal = () => {
+    setIsInfoModalOpened(true);
+  };
+
   return (
     <ItemStyled
       selected={selected}
@@ -103,12 +112,21 @@ export const BeerItem = ({
           <BoldText>first brewed: </BoldText> {first_brewed}
         </InfoTextBeer>
       </InfoWrapperStyled>
-      <LinkStyled to={`onebeer/${id}`}>
-        {isAuth ? (<ReadMoreBtnStyled>Read more</ReadMoreBtnStyled>) : (<ReadMoreBtnStyled>NO!! Read more</ReadMoreBtnStyled>)}
-      </LinkStyled>
+      {isAuth ? (
+        <LinkStyled to={`onebeer/${id}`}>
+          <ReadMoreBtnStyled>Read more</ReadMoreBtnStyled>
+        </LinkStyled>
+      ) : (
+        <ReadMoreBtnStyledDisabled onClick={openInfoModal}>
+          Read more
+        </ReadMoreBtnStyledDisabled>
+      )}
       <Scrollbars style={{ width: 250, height: 80, zIndex: 20 }}>
         <InfoTextBeerDescr>{description}</InfoTextBeerDescr>
       </Scrollbars>
+      <Modal active={isInfoModalOpened} setActive={setIsInfoModalOpened}>
+        <ReadMoreModal setIsInfoModalOpened={setIsInfoModalOpened} />
+      </Modal>
     </ItemStyled>
   );
 };

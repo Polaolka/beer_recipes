@@ -5,7 +5,6 @@ import {
   RectStyled,
   TitleStyled,
   LogInBtn,
-  RegistrationBtn,
   LogInIcon,
   LogOutIcon,
   HelloStyled,

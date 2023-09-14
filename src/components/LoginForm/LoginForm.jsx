@@ -3,37 +3,35 @@ import { InputWraper } from "components/Form/Input.styled";
 import { Button } from "components/Styled";
 // import { useNavigate } from "react-router-dom";
 import { FormFields, LoginFormStyled } from "./LoginForm.styled";
-import Message from "components/Message/Message";
 import ShowPassword from "components/ShowPassword/ShowPassword";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
 import useStore from '../../zustand/store';
 
+const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+const passwordPattern = /^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/;
+
 export const LoginForm = ({setIsLoginModalOpened}) => {
-  const { error, logIn } = useStore();
-  // const navigate = useNavigate();
+  const { logIn } = useStore();
   const [passwordShown, setPasswordShown] = useState(false);
   const initialValues = { email: "", password: "" };
 
   const schema = yup.object().shape({
-    email: yup.string().min(3).max(254).required(),
-    password: yup.string().min(8).max(100).required(),
+    email: yup.string().min(4).max(50).required().matches(emailPattern),
+    password: yup.string().min(7).max(7).required().matches(passwordPattern),
   });
 
 
   const handleSubmit = (values, { resetForm }) => {
     logIn(values);
     setIsLoginModalOpened(false);
-    // navigate("/teachers");
     resetForm();
   };
-
+  
   const onClickHandler = () => {
     setPasswordShown((state) => !state);
   };
-
-  const message = error;
 
   return (
       <LoginFormStyled>
@@ -80,7 +78,6 @@ export const LoginForm = ({setIsLoginModalOpened}) => {
             </ButtonContainer>
           </Form>
         </Formik>
-        {message && <Message>{message}</Message>}
       </LoginFormStyled>
   );
 };

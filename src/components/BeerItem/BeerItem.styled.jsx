@@ -10,7 +10,7 @@ export const SelectStyled = styled(GrCheckboxSelected)`
   cursor: pointer;
   &.active {
     opacity: 1;
-    transform: scale(1.02)
+    transform: scale(1.02);
   }
 `;
 export const TrashStyled = styled(GrTrash)`
@@ -78,7 +78,7 @@ export const ItemStyled = styled.div`
   height: 320px;
   &.active {
     background-color: #e8ffb1;
-    transform: scale(1.02)
+    transform: scale(1.02);
   }
 `;
 export const NameStyled = styled.h3`
@@ -133,7 +133,6 @@ export const InfoTextBeerDescr = styled.p`
   font-weight: 500;
   display: block;
   height: 50px;
-
 `;
 
 export const BoldText = styled.span`
@@ -143,12 +142,11 @@ export const BoldText = styled.span`
 `;
 
 export const ReadMoreBtnStyled = styled.div`
-text-align: center;
+  text-align: center;
   width: 120px;
   padding: 8px;
   gap: 6px;
   border-radius: 4px;
-  background: #ff7300;
   box-shadow: 0px 3.4369285106658936px 3.4369285106658936px 0px
     rgba(0, 0, 0, 0.25);
   color: #ffffff;
@@ -158,4 +156,27 @@ text-align: center;
   &:hover {
     background: #ea4f01;
   }
+  background-color: ${(props) => (props.disabled ? 'gray' : '#ff7300')};
+
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
+
+export const ReadMoreBtnStyledDisabled = styled.button`
+  text-align: center;
+  width: 120px;
+  padding: 8px;
+  gap: 6px;
+  border-radius: 4px;
+  border: transparent;
+  box-shadow: 0px 3.5px 3.5px 0px
+    rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  background: #d1a784;
+  &:hover {
+    background: #985b3d;
+  }
+`;
+

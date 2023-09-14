@@ -18,9 +18,11 @@ export const registerUser = async newUserData => {
       displayName: newUserData.username,
     });
     const { uid, displayName, email } = auth.currentUser;
+    console.log(uid, displayName, email,);
     return { uid, displayName, email };
   } catch (error) {
-    return error.message;
+    console.log(error.message);
+    return undefined;
   }
 };
 
@@ -34,7 +36,7 @@ export const logInUser = async userData => {
     const { uid, displayName, email } = user;
     return { uid, displayName, email };
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     return undefined;
   }
 };
