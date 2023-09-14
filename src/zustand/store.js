@@ -117,6 +117,7 @@ const useStore = create(set => ({
   },
   logOut: async () => {
     logOutUser();
+    saveState('beersUser', null);
     set({ currentUser: null, userId: null, login: null, isAuth: false });
   },
   resetError: () => {
