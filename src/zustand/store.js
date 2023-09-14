@@ -17,7 +17,7 @@ const useStore = create(set => ({
   currentPage: 1,
   deletedBeers: loadState('deletedBeers') || [],
   getCurrentUser: () => {
-    const currentUser = loadState('beersUser') || {};
+    const currentUser = loadState('beersUser') || null;
     console.log(currentUser);
     if (currentUser) {
       set({
@@ -101,6 +101,7 @@ const useStore = create(set => ({
   },
   logIn: async userData => {
     const user = await logInUser(userData);
+
     if (user) {
       set({
         currentUser: user,
@@ -109,6 +110,7 @@ const useStore = create(set => ({
         isAuth: true,
         error: null,
       });
+      saveState('beersUser', user);
     } else {
       set({ error: 'Error logIn user' });
     }
